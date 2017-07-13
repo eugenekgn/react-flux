@@ -1,8 +1,22 @@
-'use strict';
-
 const React = require('react');
 
 const About = React.createClass({
+
+  // statics: {
+  //   willTransitionTo: function (transition, params, query, callback) {
+  //     if (!confirm('Are you sure that you want to read this page?')) {
+  //       transition.about();
+  //     } else {
+  //       callback();
+  //     }
+  //   },
+  //
+  //   willTransitionFrom: function (transition, component) {
+  //     if (!confirm('Are you sure that you want to leave this page?')) {
+  //       transition.about();
+  //     }
+  //   },
+  // },
   render: function () {
     return (
       <div>
@@ -21,9 +35,8 @@ const About = React.createClass({
         </p>
       </div>
     );
-  }
+  },
 });
-
 
 
 module.exports = About;
