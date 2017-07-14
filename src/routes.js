@@ -13,7 +13,7 @@ const About = require('./components/about/aboutPage');
 const HomePage = require('./components/homePage');
 const AuthorPage = require('./components/authors/authorPage');
 const NotFoundPage = require('./components/notFoundPage');
-const ManageAuthorPage = require('./components/authors/ManageAuthorPage');
+const ManageAuthorPage = require('./components/authors/manageAuthorPage');
 
 const routes = (
   <Route name="app" path="/" handler={App}>
@@ -21,6 +21,7 @@ const routes = (
     <Route name="authors" handler={AuthorPage}/>
     <Route name="about" handler={About}/>
     <Route name="addAuthor" path="author" handler={ManageAuthorPage}/>
+    <Route name="manageAuthor" path="author/:id" handler={ManageAuthorPage}/>
     <NotFoundRoute handler={NotFoundPage}/>
     <Redirect from="about-us" to="about"/>
     <Redirect from="awthors" to="authors"/>

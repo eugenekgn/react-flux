@@ -1,7 +1,8 @@
 const React = require('react');
+const Router = require('react-router');
+const Link = Router.Link;
 
 const AuthorList = React.createClass({
-
 
   render: function () {
 
@@ -9,7 +10,11 @@ const AuthorList = React.createClass({
       // key property insures that children components properly reorders or destroyed
       return (
         <tr key={author.id}>
-          <td><a href={`/#authors/${author.id}`}>{author.id}</a></td>
+          <td>
+            <Link to="manageAuthor" params={{id: author.id}}>
+              {author.id}
+            </Link>
+          </td>
           <td>{author.firstName} {author.lastName}</td>
         </tr>
       );
