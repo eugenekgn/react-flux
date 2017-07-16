@@ -1,3 +1,3 @@
 # react-flux
 
-do be written
+to be written
