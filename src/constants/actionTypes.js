@@ -2,5 +2,8 @@
 const keyMirror = require('react/lib/keyMirror');
 
 module.exports = {
-  CREATE_AUTHOR: null,
+  INITIALIZE: 'INITIALIZE',
+  CREATE_AUTHOR: 'CREATE_AUTHOR',
+  UPDATE_AUTHOR: 'UPDATE_AUTHOR',
+  DELETE_AUTHOR: 'DELETE_AUTHOR',
 };

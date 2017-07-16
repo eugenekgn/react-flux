@@ -1,24 +1,40 @@
 const React = require('react');
-const AuthorApi = require('../../api/authorApi');
+const AuthorStore = require('../../stores/authorStore');
+const AuthorActions = require('../../actions/authorActions');
 const AuthorList = require('./authorList');
 
 const Router = require('react-router');
 const Link = require('react-router').Link;
 
-const Authors = React.createClass({
+const AuthorPage = React.createClass({
 
   getInitialState() {
     return {
-      authors: [],
+      authors: AuthorStore.getAllAuthors(),
     };
   },
 
   componentDidMount() {
     if (this.isMounted()) {
       this.setState({
-        authors: AuthorApi.getAllAuthors(),
+        authors: AuthorStore.getAllAuthors(),
       });
     }
+  },
+
+  componentWillMount: function () {
+    AuthorStore.addChangeListener(this._onChange);
+  },
+
+  // Clean up when this component is unmounted
+  componentWillUnmount: function () {
+    AuthorStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function () {
+    this.setState({
+      authors: AuthorStore.getAllAuthors(),
+    });
   },
 
   render: function () {
@@ -31,4 +47,4 @@ const Authors = React.createClass({
   },
 });
 
-module.exports = Authors;
+module.exports = AuthorPage;

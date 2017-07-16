@@ -1,12 +1,13 @@
 const React = require('react');
 const AuthorForm = require('./authorFromPage');
-const AuthorApi = require('../../api/authorApi');
 const Router = require('react-router');
 const toastr = require('toastr');
+const AuthorStore = require('../../stores/authorStore');
+const AuthorActions = require('../../actions/authorActions');
 
 const ManageAuthorPage = React.createClass({
   mixins: [
-    Router.Navigation
+    Router.Navigation,
   ],
 
   statics: {
@@ -30,6 +31,7 @@ const ManageAuthorPage = React.createClass({
   },
 
   setAuthorState: function (event) {
+
     this.setState({dirty: true});
     const field = event.target.name;
     this.state.author[field] = event.target.value;
@@ -65,7 +67,12 @@ const ManageAuthorPage = React.createClass({
       return;
     }
 
-    AuthorApi.saveAuthor(this.state.author);
+    if (this.state.author.id) {
+      AuthorActions.updateAuthor(this.state.author);
+    } else {
+      AuthorActions.createAuthor(this.state.author);
+    }
+
     this.setState({dirty: false});
     // Redirect after clicking save
     toastr.success('Author Saved!');
@@ -78,7 +85,7 @@ const ManageAuthorPage = React.createClass({
 
     if (authorId) {
       this.setState({
-        author: AuthorApi.getAuthorById(authorId),
+        author: AuthorStore.getAuthorById(authorId),
       });
     }
   },

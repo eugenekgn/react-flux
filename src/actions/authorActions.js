@@ -12,5 +12,22 @@ const AuthorActions = {
       author: newAuthor,
     });
   },
+
+  updateAuthor: function (author) {
+    const updatedAuthor = AuthorApi.saveAuthor(author);
+
+    Dispatcher.dispatch({
+      actionType: ActionsTypes.UPDATE_AUTHOR,
+      author: updatedAuthor,
+    });
+  },
+
+  deleteAuthor: function (id) {
+    Dispatcher.dispatch({
+      actionType: ActionsTypes.DELETE_AUTHOR,
+      id: id,
+    });
+  },
 };
 
+module.exports = AuthorActions;
